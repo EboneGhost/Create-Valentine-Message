@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    background: linear-gradient(45deg, #ff007f, #ff1493);
+    font-family: 'Reddit Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2 {
+    font-family: 'Great Vibes', cursive;
+    margin-bottom: 1.5rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+
+.form-group {
+    margin: 1rem 0;
+}
+
+input, select {
+    width: 80%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ff007f;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+button {
+    background: #ff007f;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #ff1493;
+    transform: scale(1.05);
+}
+
+.day-emoji {
+    font-size: 8rem;
+    margin: 20px 0;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.name-highlight {
+    color: #ff69b4;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(255,105,180,0.5);
+}
+
+.proposal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.proposal-buttons button {
+    flex: 1;
+    max-width: 200px;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+#heartAnimation {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 3s linear forwards;
+}

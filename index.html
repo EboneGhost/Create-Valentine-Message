@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Valentine Message</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Reddit+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create Valentine Message 💌</h1>
+        <div class="form-group">
+            <input type="text" id="senderName" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="receiverName" placeholder="Their Name" required>
+        </div>
+        <div class="form-group">
+            <select id="relationshipStatus" required>
+                <option value="">Relationship Status</option>
+                <option value="single">Single ❤️🔥</option>
+                <option value="committed">Committed 💍</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="daySelector" required>
+                <option value="7">Rose Day (Feb 7)</option>
+                <option value="8">Propose Day (Feb 8)</option>
+                <option value="9">Chocolate Day (Feb 9)</option>
+                <option value="10">Teddy Day (Feb 10)</option>
+                <option value="11">Promise Day (Feb 11)</option>
+                <option value="12">Hug Day (Feb 12)</option>
+                <option value="13">Kiss Day (Feb 13)</option>
+                <option value="14">Valentine's Day (Feb 14)</option>
+            </select>
+        </div>
+        <button onclick="generateLink()">Create Link</button>
+    </div>
+
+    <script>
+        function generateLink() {
+            const sender = encodeURIComponent(document.getElementById('senderName').value);
+            const receiver = encodeURIComponent(document.getElementById('receiverName').value);
+            const status = encodeURIComponent(document.getElementById('relationshipStatus').value);
+            const day = encodeURIComponent(document.getElementById('daySelector').value);
+
+            if (!sender || !receiver || !status || !day) {
+                alert('Please fill all fields!');
+                return;
+            }
+
+            const link = `content.html?sender=${sender}&receiver=${receiver}&status=${status}&day=${day}`;
+
+            // Show copy prompt
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = link;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            alert('Link copied to clipboard! 📋\nShare it with your Valentine');
+        }
+    </script>
+</body>
+
+</html>
