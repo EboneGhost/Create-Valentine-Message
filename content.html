@@ -4,9 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Message</title>
+    <title>Special Valentine Message</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Reddit+Sans&display=swap" rel="stylesheet">
+    <script>
+        // Vercel routing fix
+        if (window.location.host.includes('vercel.app') &&
+            !window.location.pathname.endsWith('content.html') &&
+            window.location.search.includes('sender=')) {
+            window.location.href = `/content.html${window.location.search}`;
+        }
+    </script>
 </head>
 
 <body>
