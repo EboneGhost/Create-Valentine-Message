@@ -41,11 +41,20 @@ const valentineDays = {
     }
 };
 
-// Only run on content page
-if (window.location.href.includes('content.html')) {
+// Vercel routing helper
+const fixVercelRouting = () => {
     const params = new URLSearchParams(window.location.search);
+    if (window.location.host.includes('vercel.app') && params.has('sender')) {
+        window.history.replaceState({}, '', `/content.html?${params.toString()}`);
+    }
+};
 
+// Main content logic
+const initContentPage = () => {
     try {
+        fixVercelRouting();
+
+        const params = new URLSearchParams(window.location.search);
         const sender = decodeURIComponent(params.get('sender'));
         const receiver = decodeURIComponent(params.get('receiver'));
         const status = decodeURIComponent(params.get('status'));
@@ -90,10 +99,15 @@ if (window.location.href.includes('content.html')) {
             <div class="container">
                 <h2>Invalid Link ❌</h2>
                 <p>Please ask the sender for a valid Valentine message link</p>
-                <button onclick="window.location.href = 'index.html'">Create New</button>
+                <button onclick="window.location.href = '/'">Create New</button>
             </div>
         `;
     }
+};
+
+// Initialize
+if (window.location.pathname.includes('content.html')) {
+    initContentPage();
 }
 
 function createHeart() {
