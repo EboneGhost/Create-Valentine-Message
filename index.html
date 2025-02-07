@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Valentine Message</title>
+    <title>Valentine Message Creator</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Reddit+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h1>Create Valentine Message 💌</h1>
+        <h1>Create Your Valentine Message 💖</h1>
         <div class="form-group">
             <input type="text" id="senderName" placeholder="Your Name" required>
         </div>
@@ -37,13 +37,14 @@
                 <option value="14">Valentine's Day (Feb 14)</option>
             </select>
         </div>
-        <button onclick="generateLink()">Create Link</button>
+        <button onclick="generateLink()">Generate Share Link</button>
     </div>
 
     <script>
         function generateLink() {
-            const sender = encodeURIComponent(document.getElementById('senderName').value);
-            const receiver = encodeURIComponent(document.getElementById('receiverName').value);
+            const baseUrl = window.location.origin;
+            const sender = encodeURIComponent(document.getElementById('senderName').value.trim());
+            const receiver = encodeURIComponent(document.getElementById('receiverName').value.trim());
             const status = encodeURIComponent(document.getElementById('relationshipStatus').value);
             const day = encodeURIComponent(document.getElementById('daySelector').value);
 
@@ -52,17 +53,14 @@
                 return;
             }
 
-            const link = `content.html?sender=${sender}&receiver=${receiver}&status=${status}&day=${day}`;
+            const link = `${baseUrl}/content.html?sender=${sender}&receiver=${receiver}&status=${status}&day=${day}`;
 
-            // Show copy prompt
-            const tempInput = document.createElement('input');
-            document.body.appendChild(tempInput);
-            tempInput.value = link;
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            alert('Link copied to clipboard! 📋\nShare it with your Valentine');
+            // Copy to clipboard
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copied to clipboard! 📋\nShare it with your Valentine!');
+            }).catch(err => {
+                prompt('Copy this link:', link);
+            });
         }
     </script>
 </body>
